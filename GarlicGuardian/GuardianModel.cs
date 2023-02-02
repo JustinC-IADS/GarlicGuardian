@@ -64,7 +64,7 @@ internal partial class GuardianModel : ObservableObject, IRecipient<GetPowerMess
     #region hide
     public GuardianModel()
     {
-        CommunityToolkit.Mvvm.Messaging.WeakReferenceMessenger.Default.Register(this);
+        WeakReferenceMessenger.Default.Register(this);
         Reset();
 
         Task.Run(async () =>
@@ -72,7 +72,7 @@ internal partial class GuardianModel : ObservableObject, IRecipient<GetPowerMess
             while (true)
             {
                 await Task.Delay(100);
-                Usage = CommunityToolkit.Mvvm.Messaging.WeakReferenceMessenger.Default.Send<GetUsageMessage>().Response;
+                Usage = WeakReferenceMessenger.Default.Send<GetUsageMessage>().Response;
             }
         });
     }
